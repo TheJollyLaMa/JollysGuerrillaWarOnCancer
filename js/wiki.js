@@ -62,7 +62,7 @@ function renderFeatureImage(entry) {
     return "";
   }
 
-  const alt = typeof image.alt === "string" && image.alt.trim() ? image.alt : `${entry.title} illustration`;
+  const alt = typeof image.alt === "string" && image.alt.trim() ? image.alt.trim() : `${entry.title} illustration`;
   const caption = typeof image.caption === "string" ? image.caption.trim() : "";
 
   return `
