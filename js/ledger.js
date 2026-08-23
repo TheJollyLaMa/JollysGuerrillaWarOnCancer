@@ -1,3 +1,5 @@
+import { escapeHtml } from "./utils.js";
+
 const seedData = {
   contributions: [
     {
@@ -13,15 +15,6 @@ const seedData = {
   ],
   bounties: [{ title: "Schema evidence audit", amount: "0.35 ETH", status: "Open" }]
 };
-
-function escapeHtml(value = "") {
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-}
 
 function createCard(title, body) {
   const section = document.createElement("section");

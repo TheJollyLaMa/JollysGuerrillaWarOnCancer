@@ -26,6 +26,28 @@ const ledgerRoot = document.querySelector("#ledgerContent");
 const resultTemplate = document.querySelector("#resultCardTemplate");
 const appStatus = document.querySelector("#appStatus");
 
+function assertDom() {
+  const requiredNodes = {
+    resultsCount,
+    catalogResults,
+    wikiList,
+    wikiEntry,
+    filtersForm,
+    categoryFilter,
+    evidenceFilter,
+    mapRoot,
+    ledgerRoot,
+    resultTemplate,
+    appStatus
+  };
+
+  Object.entries(requiredNodes).forEach(([name, node]) => {
+    if (!node) {
+      throw new Error(`Missing required DOM node: ${name}`);
+    }
+  });
+}
+
 async function loadJson(path) {
   const response = await fetch(path);
 
@@ -146,6 +168,8 @@ function decorateEntries(entries) {
 
 async function init() {
   try {
+    assertDom();
+
     const [schema, sulforaphane, mushrooms] = await Promise.all([
       loadJson("./data/schema/method-schema.json"),
       loadJson("./data/sulforaphane.json"),
@@ -164,7 +188,6 @@ async function init() {
   } catch (error) {
     appStatus.textContent = `App initialization failed: ${error.message}`;
     appStatus.classList.remove("is-hidden");
-    catalogResults.textContent = error.message;
   }
 }
 

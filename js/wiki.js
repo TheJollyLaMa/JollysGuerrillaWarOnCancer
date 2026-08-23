@@ -1,11 +1,4 @@
-function escapeHtml(value = "") {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-}
+import { escapeHtml } from "./utils.js";
 
 function renderMarkdownBlock(markdown = "") {
   const lines = markdown.split("\n");
@@ -20,26 +13,26 @@ function renderMarkdownBlock(markdown = "") {
   };
 
   lines.forEach((line) => {
-    const safeLine = escapeHtml(line.trim());
+    const trimmedLine = line.trim();
 
-    if (!safeLine) {
+    if (!trimmedLine) {
       flushList();
       return;
     }
 
-    if (safeLine.startsWith("## ")) {
+    if (trimmedLine.startsWith("## ")) {
       flushList();
-      fragments.push(`<h3>${safeLine.slice(3)}</h3>`);
+      fragments.push(`<h3>${escapeHtml(trimmedLine.slice(3))}</h3>`);
       return;
     }
 
-    if (safeLine.startsWith("- ")) {
-      listItems.push(safeLine.slice(2));
+    if (trimmedLine.startsWith("- ")) {
+      listItems.push(escapeHtml(trimmedLine.slice(2)));
       return;
     }
 
     flushList();
-    fragments.push(`<p>${safeLine}</p>`);
+    fragments.push(`<p>${escapeHtml(trimmedLine)}</p>`);
   });
 
   flushList();
