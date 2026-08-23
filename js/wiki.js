@@ -146,7 +146,7 @@ export function renderWikiEntry(entry, container) {
   `;
 
   const featureImage = createFeatureImageElement(entry);
-  const featureImageSlot = container.querySelector(".feature-image-slot");
+  const featureImageSlot = container.querySelector(":scope > .feature-image-slot");
 
   if (featureImage && featureImageSlot) {
     featureImageSlot.replaceChildren(featureImage);
