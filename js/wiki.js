@@ -39,11 +39,25 @@ function renderMarkdownBlock(markdown = "") {
   return fragments.join("");
 }
 
+function isSafeImageSource(source) {
+  if (typeof source !== "string" || !source.trim()) {
+    return false;
+  }
+
+  try {
+    const base = typeof window !== "undefined" ? window.location.href : "https://example.invalid/";
+    const parsed = new URL(source, base);
+    return parsed.protocol === "https:" || parsed.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
 function renderFeatureImage(entry) {
   const image = entry.feature_image;
   const source = image?.src;
 
-  if (typeof source !== "string" || !/^(https:\/\/|\/|\.\/|\.\.\/)/.test(source)) {
+  if (!isSafeImageSource(source)) {
     return "";
   }
 
