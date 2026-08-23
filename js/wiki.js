@@ -62,7 +62,10 @@ function createFeatureImageElement(entry) {
     return null;
   }
 
-  const alt = typeof image.alt === "string" && image.alt.trim() ? image.alt.trim() : `${entry.title} illustration`;
+  const providedAlt = typeof image.alt === "string" ? image.alt.trim() : "";
+  const fallbackAlt =
+    typeof entry.title === "string" && entry.title.trim() ? `${entry.title.trim()} illustration` : "Illustration";
+  const alt = providedAlt || fallbackAlt;
   const caption = typeof image.caption === "string" ? image.caption.trim() : "";
   const figure = document.createElement("figure");
   figure.className = "postcard-figure";
