@@ -1,0 +1,24 @@
+{
+  "title": "Sulforaphane",
+  "category": "Phytochemicals",
+  "accessibility_score": 4,
+  "evidence_tier": "Mixed",
+  "associated_tags": [
+    "broccoli sprouts",
+    "glucoraphanin",
+    "myrosinase",
+    "Nrf2"
+  ],
+  "mechanism_of_action": "Isothiocyanate signaling linked to phase II detoxification and oxidative-stress response pathways.",
+  "contraindications": [
+    "Use caution with thyroid concerns when crucifer intake is unusually high.",
+    "Review supplement interactions with a clinician when combining concentrated extracts with medications."
+  ],
+  "summary": "Entry shell for glucoraphanin conversion, cruciferous sprout handling, and thermal stability considerations.",
+  "feature_image": {
+    "src": "https://github.com/user-attachments/assets/0571cf50-e1d1-4352-9ea1-58a5704a98fb",
+    "alt": "Illustrated field-trip path introducing the journey toward sulforaphane research.",
+    "caption": "Journey to sulforaphane: a field-trip style visual for sprout, crucifer, and activation research."
+  },
+  "body": "## Research shell\nSulforaphane is commonly discussed as an activated isothiocyanate produced from glucoraphanin when plant tissue damage allows myrosinase contact.\n\n## Preparation notes\n- Prioritize broccoli sprout or crucifer sourcing that preserves glucoraphanin content.\n- Track whether active myrosinase is present natively or restored with companion foods.\n- Compare raw, gently warmed, and overheated preparation paths for thermal stability.\n\n## Open questions\n- What preparation window best balances microbial safety and myrosinase preservation?\n- Which community protocols make sprouts accessible for low-cost home use?"
+}
