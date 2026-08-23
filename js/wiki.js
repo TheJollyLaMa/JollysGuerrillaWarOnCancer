@@ -39,6 +39,25 @@ function renderMarkdownBlock(markdown = "") {
   return fragments.join("");
 }
 
+function renderFeatureImage(entry) {
+  const image = entry.feature_image ?? null;
+  const source = image?.src;
+
+  if (typeof source !== "string" || !/^(https:\/\/|\/|\.\/|\.\.\/)/.test(source)) {
+    return "";
+  }
+
+  const alt = typeof image.alt === "string" && image.alt.trim() ? image.alt : `${entry.title} illustration`;
+  const caption = typeof image.caption === "string" ? image.caption.trim() : "";
+
+  return `
+    <figure class="bus-postcard wiki-postcard">
+      <img src="${escapeHtml(source)}" alt="${escapeHtml(alt)}" />
+      ${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ""}
+    </figure>
+  `;
+}
+
 export function renderWikiList(entries, container, onSelect) {
   container.replaceChildren();
 
@@ -67,6 +86,7 @@ export function renderWikiEntry(entry, container) {
       <h2>${escapeHtml(entry.title)}</h2>
       <p>${escapeHtml(entry.summary)}</p>
     </header>
+    ${renderFeatureImage(entry)}
     <div class="metadata-grid">
       <section class="metadata-item">
         <strong>Accessibility score</strong>

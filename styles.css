@@ -196,6 +196,10 @@ select {
   margin: 1rem 0 0;
 }
 
+.wiki-postcard {
+  margin-top: 1.25rem;
+}
+
 .bus-postcard img {
   width: 100%;
   display: block;
