@@ -46,6 +46,8 @@ export function createLedgerModel() {
 }
 
 export function renderLedger(container, model) {
+  const latestGrant = model.grants.at(-1) ?? null;
+
   container.replaceChildren(
     createCard(
       "BigNuten Contribution Flow",
@@ -79,7 +81,7 @@ export function renderLedger(container, model) {
       `<pre class="ledger-preview">${JSON.stringify(
         {
           contribution: model.publishContribution(model.contributions[0]),
-          allocation: model.allocateGrant(model.grants[1])
+          allocation: latestGrant ? model.allocateGrant(latestGrant) : null
         },
         null,
         2

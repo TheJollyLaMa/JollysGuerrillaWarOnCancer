@@ -27,6 +27,7 @@ const resultTemplate = document.querySelector("#resultCardTemplate");
 const appStatus = document.querySelector("#appStatus");
 
 function assertDom() {
+  const resultCard = resultTemplate?.content?.firstElementChild;
   const requiredNodes = {
     resultsCount,
     catalogResults,
@@ -38,6 +39,7 @@ function assertDom() {
     mapRoot,
     ledgerRoot,
     resultTemplate,
+    resultCard,
     appStatus
   };
 

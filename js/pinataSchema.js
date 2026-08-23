@@ -9,6 +9,7 @@ const requiredFields = [
 ];
 
 export function validateMethod(entry, schema = {}) {
+  const normalizedSchema = schema ?? {};
   const errors = [];
 
   requiredFields.forEach((field) => {
@@ -21,15 +22,21 @@ export function validateMethod(entry, schema = {}) {
   });
 
   if (
-    schema.properties?.accessibility_score?.minimum !== undefined &&
-    entry.accessibility_score < schema.properties.accessibility_score.minimum
+    !normalizedSchema.properties?.accessibility_score
+  ) {
+    errors.push("Missing schema definition");
+  }
+
+  if (
+    normalizedSchema.properties?.accessibility_score?.minimum !== undefined &&
+    entry.accessibility_score < normalizedSchema.properties.accessibility_score.minimum
   ) {
     errors.push("Accessibility score below schema minimum");
   }
 
   if (
-    schema.properties?.accessibility_score?.maximum !== undefined &&
-    entry.accessibility_score > schema.properties.accessibility_score.maximum
+    normalizedSchema.properties?.accessibility_score?.maximum !== undefined &&
+    entry.accessibility_score > normalizedSchema.properties.accessibility_score.maximum
   ) {
     errors.push("Accessibility score above schema maximum");
   }
