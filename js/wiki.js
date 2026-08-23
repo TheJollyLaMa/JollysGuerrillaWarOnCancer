@@ -54,23 +54,31 @@ function getSafeImageSource(source) {
   }
 }
 
-function renderFeatureImage(entry) {
+function createFeatureImageElement(entry) {
   const image = entry.feature_image;
   const source = getSafeImageSource(image?.src);
 
   if (!source) {
-    return "";
+    return null;
   }
 
   const alt = typeof image.alt === "string" && image.alt.trim() ? image.alt.trim() : `${entry.title} illustration`;
   const caption = typeof image.caption === "string" ? image.caption.trim() : "";
+  const figure = document.createElement("figure");
+  figure.className = "postcard-figure";
 
-  return `
-    <figure class="postcard-figure">
-      <img src="${escapeHtml(source)}" alt="${escapeHtml(alt)}" />
-      ${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ""}
-    </figure>
-  `;
+  const imageElement = document.createElement("img");
+  imageElement.src = source;
+  imageElement.alt = alt;
+  figure.append(imageElement);
+
+  if (caption) {
+    const captionElement = document.createElement("figcaption");
+    captionElement.textContent = caption;
+    figure.append(captionElement);
+  }
+
+  return figure;
 }
 
 export function renderWikiList(entries, container, onSelect) {
@@ -101,7 +109,6 @@ export function renderWikiEntry(entry, container) {
       <h2>${escapeHtml(entry.title)}</h2>
       <p>${escapeHtml(entry.summary)}</p>
     </header>
-    ${renderFeatureImage(entry)}
     <div class="metadata-grid">
       <section class="metadata-item">
         <strong>Accessibility score</strong>
@@ -133,4 +140,11 @@ export function renderWikiEntry(entry, container) {
       ${renderMarkdownBlock(entry.body)}
     </section>
   `;
+
+  const featureImage = createFeatureImageElement(entry);
+  const header = container.querySelector("header");
+
+  if (featureImage && header) {
+    header.insertAdjacentElement("afterend", featureImage);
+  }
 }
