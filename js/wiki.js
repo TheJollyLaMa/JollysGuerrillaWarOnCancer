@@ -53,11 +53,11 @@ export function renderWikiList(entries, container, onSelect) {
 
 export function renderWikiEntry(entry, container) {
   const validation = entry.validation ?? { valid: false, errors: ["Validation unavailable"] };
-  const contraindications = entry.contraindications
+  const contraindications = (entry.contraindications ?? [])
     .map((item) => `<li>${escapeHtml(item)}</li>`)
     .join("");
 
-  const tags = entry.associated_tags
+  const tags = (entry.associated_tags ?? [])
     .map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`)
     .join("");
 

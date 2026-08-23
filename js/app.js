@@ -175,6 +175,11 @@ async function init() {
       loadJson("./data/schema/method-schema.json"),
       loadJson("./data/entries.json")
     ]);
+
+    if (!Array.isArray(entryPaths)) {
+      throw new Error("Entry manifest must be an array of JSON paths");
+    }
+
     const entries = await Promise.all(entryPaths.map((path) => loadJson(path)));
 
     state.schema = schema;
