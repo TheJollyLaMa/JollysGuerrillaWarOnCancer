@@ -146,9 +146,9 @@ export function renderWikiEntry(entry, container) {
   `;
 
   const featureImage = createFeatureImageElement(entry);
-  const featureImageSlot = container.querySelector(":scope > .feature-image-slot");
+  const featureImageSlot = container.children[1];
 
-  if (featureImage && featureImageSlot) {
+  if (featureImage && featureImageSlot?.classList?.contains("feature-image-slot")) {
     featureImageSlot.replaceChildren(featureImage);
   }
 }
