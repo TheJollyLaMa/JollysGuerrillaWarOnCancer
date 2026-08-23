@@ -197,7 +197,7 @@ select {
 }
 
 .wiki-postcard {
-  margin-top: 1.25rem;
+  margin: 1.25rem 0 0;
 }
 
 .postcard-figure img {
