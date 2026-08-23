@@ -192,7 +192,7 @@ select {
   padding: 1rem;
 }
 
-.bus-postcard {
+.postcard-figure {
   margin: 1rem 0 0;
 }
 
@@ -200,7 +200,7 @@ select {
   margin-top: 1.25rem;
 }
 
-.bus-postcard img {
+.postcard-figure img {
   width: 100%;
   display: block;
   border: 3px solid var(--line);
@@ -208,7 +208,7 @@ select {
   background: #fffef7;
 }
 
-.bus-postcard figcaption {
+.postcard-figure figcaption {
   margin-top: 0.65rem;
   font-size: 0.95rem;
   font-weight: 700;

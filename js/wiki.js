@@ -40,7 +40,7 @@ function renderMarkdownBlock(markdown = "") {
 }
 
 function renderFeatureImage(entry) {
-  const image = entry.feature_image ?? null;
+  const image = entry.feature_image;
   const source = image?.src;
 
   if (typeof source !== "string" || !/^(https:\/\/|\/|\.\/|\.\.\/)/.test(source)) {
@@ -51,7 +51,7 @@ function renderFeatureImage(entry) {
   const caption = typeof image.caption === "string" ? image.caption.trim() : "";
 
   return `
-    <figure class="bus-postcard wiki-postcard">
+    <figure class="postcard-figure wiki-postcard">
       <img src="${escapeHtml(source)}" alt="${escapeHtml(alt)}" />
       ${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ""}
     </figure>
