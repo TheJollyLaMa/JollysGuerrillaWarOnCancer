@@ -119,6 +119,15 @@ select {
   padding: 1.25rem;
 }
 
+.status-banner {
+  border: 3px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffe0dc;
+  color: #611a15;
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+}
+
 .panel-heading p,
 .result-category,
 .result-mechanism,

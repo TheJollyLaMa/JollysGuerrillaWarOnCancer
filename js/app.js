@@ -24,6 +24,7 @@ const evidenceFilter = document.querySelector("#evidenceFilter");
 const mapRoot = document.querySelector("#fractalMap");
 const ledgerRoot = document.querySelector("#ledgerContent");
 const resultTemplate = document.querySelector("#resultCardTemplate");
+const appStatus = document.querySelector("#appStatus");
 
 async function loadJson(path) {
   const response = await fetch(path);
@@ -161,6 +162,8 @@ async function init() {
     renderLedger(ledgerRoot, state.ledgerModel);
     selectEntry(state.entries[0], null);
   } catch (error) {
+    appStatus.textContent = `App initialization failed: ${error.message}`;
+    appStatus.classList.remove("is-hidden");
     catalogResults.textContent = error.message;
   }
 }

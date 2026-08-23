@@ -14,10 +14,19 @@ const seedData = {
   bounties: [{ title: "Schema evidence audit", amount: "0.35 ETH", status: "Open" }]
 };
 
+function escapeHtml(value = "") {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 function createCard(title, body) {
   const section = document.createElement("section");
   section.className = "ledger-card";
-  section.innerHTML = `<h3>${title}</h3>${body}`;
+  section.innerHTML = `<h3>${escapeHtml(title)}</h3>${body}`;
   return section;
 }
 
@@ -50,17 +59,25 @@ export function renderLedger(container, model) {
       `<div class="ledger-list">${model.contributions
         .map(
           ({ contributor, pullRequest, summary, rewardTrack }) =>
-            `<p><strong>${contributor}</strong> logged ${pullRequest} via ${rewardTrack}.<br />${summary}</p>`
+            `<p><strong>${escapeHtml(contributor)}</strong> logged ${escapeHtml(pullRequest)} via ${escapeHtml(
+              rewardTrack
+            )}.<br />${escapeHtml(summary)}</p>`
         )
         .join("")}</div>`
     ),
     createCard(
       "GreenTeaHut#1 Treasury Flow",
       `<div class="ledger-list">${model.grants
-        .map(({ source, amount, status }) => `<p><strong>${status}</strong>: ${source} · ${amount}</p>`)
+        .map(
+          ({ source, amount, status }) =>
+            `<p><strong>${escapeHtml(status)}</strong>: ${escapeHtml(source)} · ${escapeHtml(amount)}</p>`
+        )
         .join("")}
         ${model.bounties
-          .map(({ title, amount, status }) => `<p><strong>${status}</strong>: ${title} · ${amount}</p>`)
+          .map(
+            ({ title, amount, status }) =>
+              `<p><strong>${escapeHtml(status)}</strong>: ${escapeHtml(title)} · ${escapeHtml(amount)}</p>`
+          )
           .join("")}
       </div>`
     ),
