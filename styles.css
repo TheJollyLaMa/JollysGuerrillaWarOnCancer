@@ -196,6 +196,17 @@ select {
   margin: 1rem 0 0;
 }
 
+.story-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.story-strip .postcard-figure {
+  margin: 0;
+}
+
 .postcard-figure img {
   width: 100%;
   display: block;
