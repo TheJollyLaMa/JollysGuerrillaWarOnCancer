@@ -8,7 +8,7 @@ const requiredFields = [
   "contraindications"
 ];
 
-export function validateMethod(entry, schema = {}) {
+export function validateMethod(entry, schema) {
   const normalizedSchema = schema ?? {};
   const errors = [];
 
@@ -20,12 +20,6 @@ export function validateMethod(entry, schema = {}) {
       errors.push(`Missing ${field}`);
     }
   });
-
-  if (
-    !normalizedSchema.properties?.accessibility_score
-  ) {
-    errors.push("Missing schema definition");
-  }
 
   if (
     normalizedSchema.properties?.accessibility_score?.minimum !== undefined &&

@@ -52,6 +52,7 @@ export function renderWikiList(entries, container, onSelect) {
 }
 
 export function renderWikiEntry(entry, container) {
+  const validation = entry.validation ?? { valid: false, errors: ["Validation unavailable"] };
   const contraindications = entry.contraindications
     .map((item) => `<li>${escapeHtml(item)}</li>`)
     .join("");
@@ -81,7 +82,7 @@ export function renderWikiEntry(entry, container) {
       </section>
       <section class="metadata-item">
         <strong>Pinata readiness</strong>
-        <p>${entry.validation.valid ? "Valid schema payload" : entry.validation.errors.map(escapeHtml).join(", ")}</p>
+        <p>${validation.valid ? "Valid schema payload" : validation.errors.map(escapeHtml).join(", ")}</p>
       </section>
     </div>
     <section>

@@ -10,6 +10,17 @@ function createSvgElement(name, attributes) {
   return element;
 }
 
+function createLabeledGroup(label) {
+  const group = createSvgElement("g", {
+    role: "group",
+    "aria-label": label
+  });
+  const title = createSvgElement("title", {});
+  title.textContent = label;
+  group.append(title);
+  return group;
+}
+
 export function renderFractalMap(root, entries) {
   root.replaceChildren();
 
@@ -41,7 +52,9 @@ export function renderFractalMap(root, entries) {
     const y = centerY + radius * Math.sin(angle);
     const color = palette[index % palette.length];
 
-    root.append(
+    const entryGroup = createLabeledGroup(`${entry.title}: ${entry.mechanism_of_action}`);
+
+    entryGroup.append(
       createSvgElement("line", {
         x1: centerX,
         y1: centerY,
@@ -51,7 +64,7 @@ export function renderFractalMap(root, entries) {
         "stroke-width": "4"
       })
     );
-    root.append(
+    entryGroup.append(
       createSvgElement("circle", {
         cx: x,
         cy: y,
@@ -68,7 +81,7 @@ export function renderFractalMap(root, entries) {
       "font-weight": "700"
     });
     entryLabel.textContent = entry.title.slice(0, 16);
-    root.append(entryLabel);
+    entryGroup.append(entryLabel);
 
     entry.associated_tags.slice(0, 3).forEach((tag, tagIndex) => {
       const tagAngle = angle + (tagIndex - 1) * 0.45;
@@ -76,7 +89,7 @@ export function renderFractalMap(root, entries) {
       const tagX = x + tagRadius * Math.cos(tagAngle);
       const tagY = y + tagRadius * Math.sin(tagAngle);
 
-      root.append(
+      entryGroup.append(
         createSvgElement("line", {
           x1: x,
           y1: y,
@@ -86,7 +99,7 @@ export function renderFractalMap(root, entries) {
           "stroke-dasharray": "6 4"
         })
       );
-      root.append(
+      entryGroup.append(
         createSvgElement("circle", {
           cx: tagX,
           cy: tagY,
@@ -103,7 +116,9 @@ export function renderFractalMap(root, entries) {
         "font-weight": "700"
       });
       tagLabel.textContent = tag.slice(0, 12);
-      root.append(tagLabel);
+      entryGroup.append(tagLabel);
     });
+
+    root.append(entryGroup);
   });
 }
