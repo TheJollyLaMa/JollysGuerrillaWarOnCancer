@@ -66,7 +66,7 @@ function renderFeatureImage(entry) {
   const caption = typeof image.caption === "string" ? image.caption.trim() : "";
 
   return `
-    <figure class="postcard-figure wiki-postcard">
+    <figure class="postcard-figure">
       <img src="${escapeHtml(source)}" alt="${escapeHtml(alt)}" />
       ${caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : ""}
     </figure>
