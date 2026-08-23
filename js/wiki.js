@@ -112,6 +112,7 @@ export function renderWikiEntry(entry, container) {
       <h2>${escapeHtml(entry.title)}</h2>
       <p>${escapeHtml(entry.summary)}</p>
     </header>
+    <div class="feature-image-slot"></div>
     <div class="metadata-grid">
       <section class="metadata-item">
         <strong>Accessibility score</strong>
@@ -145,9 +146,9 @@ export function renderWikiEntry(entry, container) {
   `;
 
   const featureImage = createFeatureImageElement(entry);
-  const header = container.querySelector("header");
+  const featureImageSlot = container.querySelector(".feature-image-slot");
 
-  if (featureImage && header) {
-    header.insertAdjacentElement("afterend", featureImage);
+  if (featureImage && featureImageSlot) {
+    featureImageSlot.replaceChildren(featureImage);
   }
 }
