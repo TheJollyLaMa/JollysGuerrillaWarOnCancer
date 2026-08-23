@@ -39,31 +39,26 @@ function renderMarkdownBlock(markdown = "") {
   return fragments.join("");
 }
 
-function isSafeImageSource(source) {
+function getSafeImageSource(source) {
   if (typeof source !== "string" || !source.trim()) {
-    return false;
+    return null;
   }
 
   try {
     const trimmedSource = source.trim();
     const base = typeof window !== "undefined" ? window.location.href : "https://example.invalid/";
     const parsed = new URL(trimmedSource, base);
-
-    if (/^(\/|\.\/|\.\.\/)/.test(trimmedSource)) {
-      return true;
-    }
-
-    return parsed.protocol === "https:";
+    return parsed.protocol === "https:" ? parsed.href : null;
   } catch {
-    return false;
+    return null;
   }
 }
 
 function renderFeatureImage(entry) {
   const image = entry.feature_image;
-  const source = image?.src;
+  const source = getSafeImageSource(image?.src);
 
-  if (!isSafeImageSource(source)) {
+  if (!source) {
     return "";
   }
 
