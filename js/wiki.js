@@ -45,9 +45,15 @@ function isSafeImageSource(source) {
   }
 
   try {
+    const trimmedSource = source.trim();
     const base = typeof window !== "undefined" ? window.location.href : "https://example.invalid/";
-    const parsed = new URL(source, base);
-    return parsed.protocol === "https:" || parsed.protocol === "http:";
+    const parsed = new URL(trimmedSource, base);
+
+    if (/^(\/|\.\/|\.\.\/)/.test(trimmedSource)) {
+      return true;
+    }
+
+    return parsed.protocol === "https:";
   } catch {
     return false;
   }
