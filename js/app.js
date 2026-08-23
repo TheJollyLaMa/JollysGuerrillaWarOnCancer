@@ -172,14 +172,14 @@ async function init() {
   try {
     assertDom();
 
-    const [schema, sulforaphane, mushrooms] = await Promise.all([
+    const [schema, entryPaths] = await Promise.all([
       loadJson("./data/schema/method-schema.json"),
-      loadJson("./data/sulforaphane.json"),
-      loadJson("./data/mushrooms.json")
+      loadJson("./data/entries.json")
     ]);
+    const entries = await Promise.all(entryPaths.map((path) => loadJson(path)));
 
     state.schema = schema;
-    state.entries = decorateEntries([sulforaphane, mushrooms]);
+    state.entries = decorateEntries(entries);
     hydrateFilterOptions(state.entries);
     bindEvents();
     renderResults();

@@ -94,6 +94,7 @@ export function renderWikiEntry(entry, container) {
       <ul>${contraindications}</ul>
     </section>
     <section>
+      <!-- renderMarkdownBlock escapes text content before wrapping it in limited HTML tags -->
       ${renderMarkdownBlock(entry.body)}
     </section>
   `;
