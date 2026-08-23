@@ -82,7 +82,7 @@ export function renderWikiEntry(entry, container) {
       </section>
       <section class="metadata-item">
         <strong>Pinata readiness</strong>
-        <p>${validation.valid ? "Valid schema payload" : validation.errors.map(escapeHtml).join(", ")}</p>
+        <p>${validation.valid ? "Valid schema payload" : validation.errors.map((error) => escapeHtml(error)).join(", ")}</p>
       </section>
     </div>
     <section>

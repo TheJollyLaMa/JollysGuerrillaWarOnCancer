@@ -149,7 +149,6 @@ function showView(viewName) {
 
 function bindEvents() {
   filtersForm.addEventListener("input", renderResults);
-  filtersForm.addEventListener("change", renderResults);
 
   viewButtons.forEach((button) => {
     button.addEventListener("click", () => showView(button.dataset.view));
@@ -186,7 +185,10 @@ async function init() {
     renderWikiList(state.entries, wikiList, selectEntry);
     renderFractalMap(mapRoot, state.entries);
     renderLedger(ledgerRoot, state.ledgerModel);
-    selectEntry(state.entries[0], null);
+
+    if (state.entries.length > 0) {
+      selectEntry(state.entries[0], null);
+    }
   } catch (error) {
     appStatus.textContent = `App initialization failed: ${error.message}`;
     appStatus.classList.remove("is-hidden");
