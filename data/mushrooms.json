@@ -1,0 +1,19 @@
+{
+  "title": "Medicinal Mushrooms",
+  "category": "Mycology",
+  "accessibility_score": 3,
+  "evidence_tier": "Mixed",
+  "associated_tags": [
+    "Turkey Tail",
+    "Lion's Mane",
+    "Reishi",
+    "beta-glucans"
+  ],
+  "mechanism_of_action": "Polysaccharides, beta-glucans, and species-specific compounds are studied for immunomodulatory, neurotrophic, and adaptogenic effects.",
+  "contraindications": [
+    "Use caution with anticoagulants, immunosuppressants, or allergy history involving fungi.",
+    "Extraction methods and concentrated powders may not be appropriate during pregnancy or before surgery without medical guidance."
+  ],
+  "summary": "Entry shell for Turkey Tail/PSK, Lion's Mane, Reishi, and extraction protocol comparisons.",
+  "body": "## Research shell\nMedicinal mushroom discussion often separates culinary use from concentrated extracts and standardization questions.\n\n## Priority species\n- Turkey Tail / PSK and PSP literature mapping.\n- Lion's Mane questions around hericenones, erinacines, and substrate quality.\n- Reishi comparisons between fruiting body, spore, and dual extract products.\n\n## Extraction protocol notes\n- Document water, alcohol, and dual-extraction tradeoffs.\n- Compare low-tech kitchen methods with community-lab standardization goals.\n- Record beta-glucan labeling clarity and contaminants screening questions."
+}

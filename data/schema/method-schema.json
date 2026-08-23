@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Accessible Wellness Method",
+  "description": "Pinata/IPFS compatible schema for community wellness method entries.",
+  "type": "object",
+  "required": [
+    "title",
+    "category",
+    "accessibility_score",
+    "evidence_tier",
+    "associated_tags",
+    "mechanism_of_action",
+    "contraindications"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 3
+    },
+    "category": {
+      "type": "string"
+    },
+    "accessibility_score": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "evidence_tier": {
+      "type": "string",
+      "enum": ["Preclinical", "Traditional Use", "Observational", "Clinical", "Mixed"]
+    },
+    "associated_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "mechanism_of_action": {
+      "type": "string"
+    },
+    "contraindications": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "summary": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

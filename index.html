@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jolly's Guerrilla War on Cancer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Magic Bus Field Guide</p>
+        <h1>Jolly's Guerrilla War on Cancer</h1>
+        <p class="hero-copy">
+          A decentralized wellness research journey mapping compounds, community science,
+          and transparent contribution flows.
+        </p>
+        <nav class="view-nav" aria-label="Primary">
+          <button class="view-toggle is-active" data-view="dashboard">Dashboard</button>
+          <button class="view-toggle" data-view="wiki">Wiki</button>
+          <button class="view-toggle" data-view="map">Fractal Map</button>
+          <button class="view-toggle" data-view="ledger">Ledger</button>
+        </nav>
+      </div>
+      <figure class="hero-art">
+        <img
+          src="https://github.com/user-attachments/assets/aaaec058-e656-42aa-9ad9-30bd73ebf2e0"
+          alt="Jolly's Guerrilla War on Cancer brand art showing a retro science-fantasy figure directing energy toward a spiked disease form."
+        />
+      </figure>
+    </header>
+
+    <main class="layout">
+      <section id="dashboard" class="panel view-panel">
+        <div class="panel-heading">
+          <h2>Interactive Bus Stops</h2>
+          <p>Browse methods by route, evidence, and accessibility.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <aside class="stops-card">
+            <h3>Field Trip Stops</h3>
+            <ol class="stops-list">
+              <li><strong>Stop 1:</strong> Phytochemicals</li>
+              <li><strong>Stop 2:</strong> Mycology</li>
+              <li><strong>Stop 3:</strong> Metabolic Protocols</li>
+            </ol>
+          </aside>
+
+          <section class="filters-card">
+            <h3>Method Catalog Filters</h3>
+            <form id="filters" class="filters">
+              <label>
+                Search
+                <input id="search" name="search" type="search" placeholder="Search title, tags, or mechanism" />
+              </label>
+              <label>
+                Category
+                <select id="categoryFilter" name="category">
+                  <option value="">All categories</option>
+                </select>
+              </label>
+              <label>
+                Accessibility
+                <select id="accessibilityFilter" name="accessibility">
+                  <option value="">Any score</option>
+                  <option value="5">5 - Most accessible</option>
+                  <option value="4">4+</option>
+                  <option value="3">3+</option>
+                  <option value="2">2+</option>
+                  <option value="1">1+</option>
+                </select>
+              </label>
+              <label>
+                Evidence tier
+                <select id="evidenceFilter" name="evidence">
+                  <option value="">All tiers</option>
+                </select>
+              </label>
+            </form>
+          </section>
+        </div>
+
+        <section class="results-card">
+          <div class="section-title-row">
+            <h3>Catalog Results</h3>
+            <span id="resultsCount" class="badge"></span>
+          </div>
+          <div id="catalogResults" class="card-grid" aria-live="polite"></div>
+        </section>
+      </section>
+
+      <section id="wiki" class="panel view-panel is-hidden">
+        <div class="panel-heading">
+          <h2>Dynamic Wiki Shell</h2>
+          <p>JSON-backed research entry shells with standardized metadata.</p>
+        </div>
+        <div class="wiki-layout">
+          <aside class="wiki-sidebar">
+            <h3>Entries</h3>
+            <div id="wikiList"></div>
+          </aside>
+          <article id="wikiEntry" class="wiki-entry"></article>
+        </div>
+      </section>
+
+      <section id="map" class="panel view-panel is-hidden">
+        <div class="panel-heading">
+          <h2>DecentCanopy Fractal Map</h2>
+          <p>Visualize relationships between compounds, tags, and mechanisms.</p>
+        </div>
+        <div class="map-card">
+          <svg id="fractalMap" viewBox="0 0 900 520" role="img" aria-label="Relationship map of methods"></svg>
+        </div>
+      </section>
+
+      <section id="ledger" class="panel view-panel is-hidden">
+        <div class="panel-heading">
+          <h2>Transparent Treasury Flow</h2>
+          <p>Preview contribution and funding hooks for future public-ledger publishing.</p>
+        </div>
+        <div id="ledgerContent" class="ledger-layout"></div>
+      </section>
+    </main>
+
+    <template id="resultCardTemplate">
+      <article class="result-card">
+        <div class="section-title-row">
+          <h4 class="result-title"></h4>
+          <span class="badge result-score"></span>
+        </div>
+        <p class="result-category"></p>
+        <p class="result-mechanism"></p>
+        <div class="tag-row result-tags"></div>
+        <button class="bus-button result-open">Open wiki stop</button>
+      </article>
+    </template>
+
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
